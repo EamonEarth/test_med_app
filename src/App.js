@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Import custom components
 import LandingPage from './components/Landing_Page/LandingPage';
 import Login from './components/Login/Login';
-import SignUp from './components/Sign_Up/SignUp';
+import SignUp from './components/Sign_Up/sign-up';
 import Navbar from './components/Navbar/navbar';
 // Function component for the main App
 function App() {
