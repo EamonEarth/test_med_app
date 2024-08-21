@@ -1,5 +1,5 @@
 import React from 'react';
-import "./sign_up.css"
+import "./sign_up.css";
 
 const SignUp = () => {
   return (
@@ -18,22 +18,22 @@ const SignUp = () => {
           <form> 
             <div className="form-group"> 
               <label htmlFor="name">Name</label> 
-              <input type="text" name="name" id="name" required className="form-control" placeholder="Enter your name" aria-describedby="helpId" />
+              <input type="text" name="name" id="name" required className="form-control" placeholder="Enter your name" />
             </div>
 
             <div className="form-group"> 
               <label htmlFor="phone">Phone</label>
-              <input type="tel" name="phone" id="phone" required className="form-control" placeholder="Enter your phone number" aria-describedby="helpId" /> 
+              <input type="tel" name="phone" id="phone" required className="form-control" placeholder="Enter your phone number" pattern="\d{10}" title="Please enter exactly 10 digits" /> 
             </div>
 
             <div className="form-group"> 
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" required className="form-control" placeholder="Enter your email" aria-describedby="helpId" /> 
+              <input type="email" name="email" id="email" required className="form-control" placeholder="Enter your email" /> 
             </div>
 
             <div className="form-group"> 
               <label htmlFor="password">Password</label>
-              <input type="password" name="password" id="password" required className="form-control" placeholder="Enter your password" aria-describedby="helpId" />
+              <input type="password" name="password" id="password" required className="form-control" placeholder="Enter your password" minLength="6" />
             </div>
 
             <div className="btn-group">

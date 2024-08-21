@@ -1,5 +1,5 @@
 import React from 'react';
-import "./login.css"
+import "./login.css";
 
 const Login = () => {
   return (
@@ -19,7 +19,7 @@ const Login = () => {
           <form>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" className="form-control" placeholder="Enter your email" aria-describedby="helpId" />
+              <input type="email" name="email" id="email" className="form-control" placeholder="Enter your email" required />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
@@ -29,7 +29,8 @@ const Login = () => {
                 id="password"
                 className="form-control"
                 placeholder="Enter your password"
-                aria-describedby="helpId"
+                required
+                minLength="6"
               />
             </div>
             <div className="btn-group">
