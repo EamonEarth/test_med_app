@@ -59,6 +59,9 @@ const Sign_Up = () => {
     return (
         <div className="container" style={{marginTop:'5%'}}>
             <div className="signup-grid">
+            <div className="signup-text">
+            <h2>Sign-up</h2>
+            </div>
                 <div className="signup-form">
                     <form method="POST" onSubmit={register}>
                         <div className="form-group">
