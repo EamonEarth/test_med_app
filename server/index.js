@@ -17,7 +17,7 @@ app.use(express.json());
 
 // CORS Configuration
 app.use(cors({
-    origin: 'https://eamontrav-3000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    origin: 'http://localhost:3000', // Allow requests from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true

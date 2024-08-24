@@ -1,4 +1,4 @@
-export const API_URL = window.location.hostname === "localhost" ? "https://eamontrav-8081.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai" : "https://eamontrav-8081.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai";
+export const API_URL = window.location.hostname === "localhost" ? "localhost:8181" : "localhost:8181";
 console.log(
     "API_URL :",
     API_URL
