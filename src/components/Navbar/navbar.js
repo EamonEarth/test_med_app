@@ -76,7 +76,7 @@ const Navbar = () => {
          <Link to="/reviews">Reviews</Link>
         </li>
         <li className="link">
-              <Link to="/instant-consultation">
+              <Link to="/book-consultation">
                 <button className="btn1">Instant Consultation</button>
               </Link>
             </li>

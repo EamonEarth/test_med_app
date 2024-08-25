@@ -7,7 +7,8 @@ import LandingPage from './components/Landing_Page/LandingPage';
 import Login from './components/Login/Login';
 import SignUp from './components/Sign_Up/SignUp';
 import Navbar from './components/Navbar/navbar';
-import InstantConsultation from './components/InstantConsultationBooking/InstantConsultation';  
+import BookingConsultation from './components/BookingConsultation/BookingConsultation';
+import AppointmentForm from './components/AppointmentForm/AppointmentForm';
 
 // Function component for the main App
 function App() {
@@ -24,7 +25,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/instant-consultation" element={<InstantConsultation />} />
+          {/* <Route path="/instant-consultation" element={<InstantConsultation />} /> */}
+          <Route path="/book-consultation" element={<BookingConsultation />} />
+          <Route path="/search/doctors" element={<AppointmentForm />} />
 
         </Routes>
       </BrowserRouter>
