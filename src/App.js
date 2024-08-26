@@ -9,6 +9,7 @@ import SignUp from './components/Sign_Up/SignUp';
 import Navbar from './components/Navbar/navbar';
 import BookingConsultation from './components/BookingConsultation/BookingConsultation';
 import AppointmentForm from './components/AppointmentForm/AppointmentForm';
+import Notification from './components/Notification/Notification';
 
 // Function component for the main App
 function App() {
@@ -17,6 +18,8 @@ function App() {
     <div className="App">
       {/* Set up BrowserRouter for routing */}
       <BrowserRouter>
+      <Notification>
+
         {/* Display the Navbar component */}
         <Navbar/>
         {/* Set up the Routes for different pages */}
@@ -30,6 +33,7 @@ function App() {
           <Route path="/search/doctors" element={<AppointmentForm />} />
 
         </Routes>
+      </Notification>
       </BrowserRouter>
     </div>
   );
