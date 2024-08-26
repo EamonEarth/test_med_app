@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/navbar';
 import BookingConsultation from './components/BookingConsultation/BookingConsultation';
 import AppointmentForm from './components/AppointmentForm/AppointmentForm';
 import Notification from './components/Notification/Notification';
+import ReviewForm from './components/ReviewForm/ReviewForm';
 
 // Function component for the main App
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/reviews" element={<ReviewForm />} />
           {/* <Route path="/instant-consultation" element={<InstantConsultation />} /> */}
           <Route path="/book-consultation" element={<BookingConsultation />} />
           <Route path="/search/doctors" element={<AppointmentForm />} />
