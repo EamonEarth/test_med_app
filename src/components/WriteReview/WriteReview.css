@@ -1,0 +1,86 @@
+/* Star rating styling */
+.star-rating {
+    display: flex;
+    gap: 5px; /* Add some space between stars */
+  }
+  
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc; /* Default color for unselected stars */
+  }
+  
+  /* Ensure stars are highlighted from left to right */
+  .star:hover,
+  .star:hover ~ .star {
+    color: #ffc107; /* Yellow color on hover */
+  }
+  
+  /* Highlight the stars based on selection */
+  .star.selected {
+    color: #ffc107; /* Yellow color for selected stars */
+  }
+  
+  /* Reset stars after the hovered star */
+  .star:hover ~ .star {
+    color: #ccc; /* Reset color for stars after the hovered one */
+  }
+  
+  /* Form container styling (as before) */
+  .write-review-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px auto;
+  }
+  
+  .write-review-container h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-group textarea {
+    resize: vertical; /* Allows vertical resize */
+    height: 80px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c3cb7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
