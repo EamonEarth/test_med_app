@@ -42,21 +42,32 @@ const Login = () => {
       // If authentication token is received, store it in session storage
       sessionStorage.setItem('auth-token', json.authtoken);
       sessionStorage.setItem('email', email);
-
+  
       // Redirect to home page and reload the window
       navigate('/');
       window.location.reload();
     } else {
-      // Handle errors if authentication fails
-      if (json.errors) {
-        for (const error of json.errors) {
-          alert(error.msg);
-        }
-      } else {
-        alert(json.error);
-      }
-    }
-  };
+        // Handle errors if authentication fails
+        if (json.errors) {
+            for (const error of json.errors) {
+                alert(error.msg);
+              }
+            } else {
+                alert(json.error);
+              }
+            }
+          };
+
+  
+
+  // BS LOGIN OPTION 
+  //         const login = () => {
+  //           sessionStorage.setItem('email', email);
+  //           sessionStorage.setItem('userName', "Eamon Travers");
+  //           navigate('/');
+  //           window.location.reload();
+    
+  // }
 
   return (
     <div>

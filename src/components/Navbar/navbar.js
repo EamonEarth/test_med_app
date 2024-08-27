@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./navbar.css";
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 
 
@@ -10,7 +11,7 @@ const Navbar = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
-    const[email,setEmail]=useState("");
+    const [email,setEmail]=useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const handleClick = () => setClick(!click);
 
@@ -39,15 +40,17 @@ const Navbar = () => {
       setShowDropdown(!showDropdown);
     }
     useEffect(() => { 
-      const storedemail = sessionStorage.getItem("email");
+      const storedEmail = sessionStorage.getItem("email");
       const storedName = sessionStorage.getItem("name")
 
-      if (storedemail) {
+      if (storedEmail) {
             setIsLoggedIn(true);
             const firstName = storedName.split(' ')[0]
             setUsername(firstName);
           }
         }, []);
+
+        // GET INFO FOR THE PROFILE CARD!!!!!!! /////////
 
     useEffect(()=>{
       console.log("username is", username)
@@ -80,13 +83,22 @@ const Navbar = () => {
                 <button className="btn1">Instant Consultation</button>
               </Link>
             </li>
-        {isLoggedIn?(
 
+        {isLoggedIn?(
+          
           <>
-            <li>
-              <h3>Welcome {username} </h3>
+            <li 
+            // onClick={handleDropdown}
+            className="link profile-dropdown">
+              <h4 style={{marginLeft: "20px"}}
+              onClick={()=>setShowDropdown(!showDropdown)}
+              
+              >Welcome {username} </h4>
+              {showDropdown && <ProfileCard setShowDropdown={setShowDropdown}/>  
+              }
             </li>
-            <li className="link">
+            
+            <li className="link" >
               <button className="btn2" onClick={handleLogout}>
                 Logout
               </button>
