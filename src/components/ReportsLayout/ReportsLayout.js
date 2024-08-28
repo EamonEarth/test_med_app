@@ -1,6 +1,6 @@
 import React from 'react'
 import "./ReportsLayout.css"
-import pdfReport from "/Users/eamon/DEV/test_med_app/src/components/ReportsLayout/public/Report.pdf"
+import pdfReport from "./public/Report.pdf"
 
 const ReportsLayout = ({setShowReports}) => {
 
