@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../DoctorCard/DoctorCard.css";
 import "./AppointmentForm.css"
+import { useNavigate } from 'react-router-dom';
 
 const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit, updateNotification }) => {
   const [name, setName] = useState('');
@@ -8,6 +9,8 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit, updateNotific
   const [appointmentDate, setAppointmentDate] = useState('');
   const [appointmentTime, setAppointmentTime] = useState('');
   const [selectedSlot, setSelectedSlot] = useState(null);
+
+  const navigate = useNavigate()
 
   const handleSlotSelection = (slot) => {
     setSelectedSlot(slot);
@@ -41,6 +44,8 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit, updateNotific
     setPhoneNumber('');
     setAppointmentDate('');
     setAppointmentTime('');
+    navigate("/search/doctors")
+    
   };
 
   return (
