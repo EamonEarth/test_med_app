@@ -11,7 +11,6 @@ const Notification = ({ children }) => {
   const updateNotification = () => {
     const storedDoctorName = sessionStorage.getItem('doctorName'); // Use sessionStorage to get the key
     const storedAppointmentData = storedDoctorName ? JSON.parse(sessionStorage.getItem(storedDoctorName)) : null;
-    console.log("storedApptData", storedAppointmentData)
 
     if (storedAppointmentData) {
       setDoctorData({ name: storedAppointmentData.doctorName, speciality: storedAppointmentData.doctorSpeciality });

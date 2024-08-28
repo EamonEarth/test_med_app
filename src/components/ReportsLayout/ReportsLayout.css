@@ -6,7 +6,7 @@
     top: 5vh;
     right:0;
     background-color: black;
-    z-index: 1000;
+    z-index: 999;
     background-color: #d8b8ff;
     width: auto;
     padding-top: 20px;
@@ -53,4 +53,5 @@ p {
     width: 100px;
     margin-left: auto;
     margin-right: auto;
+    z-index: 1000;
 }

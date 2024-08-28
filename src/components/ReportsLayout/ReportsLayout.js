@@ -40,7 +40,7 @@ const ReportsLayout = ({setShowReports}) => {
             </p>
             <p>
             <a href={pdfReport} download>
-            <button className="report-btns" >Download Report </button>
+            <button className="report-btns" >Download </button>
             </a>
             </p>
                 

@@ -99,7 +99,7 @@
     font-size: 0.9rem;
   }
   .write-review-button:disabled {
-    background-color: #807396; /* Purple button */
+    background-color: #8e8c91; /* Purple button */
     cursor: not-allowed; /* Indicate the button is not clickable */
 
   }

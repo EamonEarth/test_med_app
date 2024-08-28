@@ -1,24 +1,65 @@
 import React, { useState } from 'react';
-import './sign_up.css'
+import './sign_up.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
 
-// Function component for Sign Up form
 const Sign_Up = () => {
-    // State variables using useState hook
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [showerr, setShowerr] = useState(''); // State to show error messages
-    const navigate = useNavigate(); // Navigation hook from react-router
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [showerr, setShowerr] = useState(''); 
+    const navigate = useNavigate();
 
-    // Function to handle form submission
+    const validateForm = () => {
+        let isValid = true;
+        setEmailError('');
+        setPasswordError('');
+        setNameError('');
+        setPhoneError('');
+
+        if (!name) {
+            setNameError('Name cannot be empty');
+            isValid = false;
+        }
+
+        if (!email) {
+            setEmailError('Email cannot be empty');
+            isValid = false;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            setEmailError('Invalid email address');
+            isValid = false;
+        }
+
+        if (!password) {
+            setPasswordError('Password cannot be empty');
+            isValid = false;
+        } else if (password.length < 6) {
+            setPasswordError('Password must be at least 6 characters');
+            isValid = false;
+        }
+
+        if (!phone) {
+            setPhoneError('Phone number cannot be empty');
+            isValid = false;
+        } else if (!/^\d{10}$/.test(phone)) {
+            setPhoneError('Phone number must be 10 digits');
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
     const register = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault(); 
 
-        // API Call to register user
-        const response = await fetch(`http://localhost:8181/api/auth/register`, {
+        if (!validateForm()) return;
+
+        const response = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -31,23 +72,18 @@ const Sign_Up = () => {
             }),
         });
 
-        const json = await response.json(); // Parse the response JSON
-        console.log(json)
-
+        const json = await response.json();
         if (json.authtoken) {
-            // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
             sessionStorage.setItem("name", name);
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
-
-            // Redirect user to home page
             navigate("/");
-            window.location.reload(); // Refresh the page
+            window.location.reload();
         } else {
             if (json.errors) {
                 for (const error of json.errors) {
-                    setShowerr(error.msg); // Show error messages
+                    setShowerr(error.msg);
                 }
             } else {
                 setShowerr(json.error);
@@ -55,13 +91,12 @@ const Sign_Up = () => {
         }
     };
 
-    // JSX to render the Sign Up form
     return (
         <div className="container" style={{marginTop:'5%'}}>
             <div className="signup-grid">
-            <div className="signup-text">
-            <h2>Sign-up</h2>
-            </div>
+                <div className="signup-text">
+                    <h2>Sign-up</h2>
+                </div>
                 <div className="signup-form">
                     <form method="POST" onSubmit={register}>
                         <div className="form-group">
@@ -76,6 +111,7 @@ const Sign_Up = () => {
                                 placeholder="Enter your name" 
                                 aria-describedby="helpId" 
                             />
+                            {nameError && <small style={{color: "red"}}>{nameError}</small>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
@@ -89,6 +125,7 @@ const Sign_Up = () => {
                                 placeholder="Enter your email" 
                                 aria-describedby="helpId" 
                             />
+                            {emailError && <small style={{color: "red"}}>{emailError}</small>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="phone">Phone</label>
@@ -102,6 +139,7 @@ const Sign_Up = () => {
                                 placeholder="Enter your phone number" 
                                 aria-describedby="helpId" 
                             />
+                            {phoneError && <small style={{color: "red"}}>{phoneError}</small>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
@@ -115,6 +153,7 @@ const Sign_Up = () => {
                                 placeholder="Enter your password" 
                                 aria-describedby="helpId" 
                             />
+                            {passwordError && <small style={{color: "red"}}>{passwordError}</small>}
                         </div>
                         {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
                         <button type="submit" className="btn btn-primary">Sign Up</button>
@@ -125,4 +164,4 @@ const Sign_Up = () => {
     );
 }
 
-export default Sign_Up; // Export the Sign_Up component for use in other components
+export default Sign_Up;

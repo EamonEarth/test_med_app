@@ -59,9 +59,6 @@ const BookingConsultation
         // }
     }, [searchParams])
 
-    useEffect(()=>{
-        console.log("isSearchd change", isSearched)
-    },[isSearched])
 
     return (
         <center>

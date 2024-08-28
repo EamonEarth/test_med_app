@@ -1,30 +1,49 @@
-// Following code has been commented with appropriate comments for your reference.
 import React, { useState, useEffect } from 'react';
-// Apply CSS according to your design theme or the CSS provided in week 2 lab 2
-
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
 
 const Login = () => {
-
-  // State variables for email and password
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState('');
-
-  // Get navigation function from react-router-dom
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
-  // Check if user is already authenticated, then redirect to home page
   useEffect(() => {
     if (sessionStorage.getItem("auth-token")) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
-  // Function to handle login form submission
+  const validateForm = () => {
+    let isValid = true;
+    setEmailError('');
+    setPasswordError('');
+
+    if (!email) {
+      setEmailError('Email cannot be empty');
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError('Invalid email address');
+      isValid = false;
+    }
+
+    if (!password) {
+      setPasswordError('Password cannot be empty');
+      isValid = false;
+    } else if (password.length < 6) {
+      setPasswordError('Password must be at least 6 characters');
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
   const login = async (e) => {
     e.preventDefault();
-    // Send a POST request to the login API endpoint
+
+    if (!validateForm()) return;
+
     const res = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
       headers: {
@@ -36,38 +55,22 @@ const Login = () => {
       }),
     });
 
-    // Parse the response JSON
     const json = await res.json();
     if (json.authtoken) {
-      // If authentication token is received, store it in session storage
       sessionStorage.setItem('auth-token', json.authtoken);
       sessionStorage.setItem('email', email);
-  
-      // Redirect to home page and reload the window
       navigate('/');
       window.location.reload();
     } else {
-        // Handle errors if authentication fails
-        if (json.errors) {
-            for (const error of json.errors) {
-                alert(error.msg);
-              }
-            } else {
-                alert(json.error);
-              }
-            }
-          };
-
-  
-
-  // BS LOGIN OPTION 
-  //         const login = () => {
-  //           sessionStorage.setItem('email', email);
-  //           sessionStorage.setItem('userName', "Eamon Travers");
-  //           navigate('/');
-  //           window.location.reload();
-    
-  // }
+      if (json.errors) {
+        for (const error of json.errors) {
+          alert(error.msg);
+        }
+      } else {
+        alert(json.error);
+      }
+    }
+  };
 
   return (
     <div>
@@ -89,7 +92,6 @@ const Login = () => {
             <form onSubmit={login}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                {/* Input field for email */}
                 <input 
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)} 
@@ -100,23 +102,23 @@ const Login = () => {
                   placeholder="Enter your email" 
                   aria-describedby="helpId" 
                 />
+                {emailError && <small style={{color: "red"}}>{emailError}</small>}
               </div>
-              {/* Input field for password */}
               <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        type="password" 
-                        name="password" 
-                        id="password" 
-                        className="form-control" 
-                        placeholder="Enter your password" 
-                        aria-describedby="helpId" 
-                    />
-                </div>
+                <label htmlFor="password">Password</label>
+                <input 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  type="password" 
+                  name="password" 
+                  id="password" 
+                  className="form-control" 
+                  placeholder="Enter your password" 
+                  aria-describedby="helpId" 
+                />
+                {passwordError && <small style={{color: "red"}}>{passwordError}</small>}
+              </div>
               <div className="btn-group">
-                {/* Login button */}
                 <button type="submit" className="btn btn-primary mb-2 mr-1 waves-effect waves-light">
                   Login
                 </button>

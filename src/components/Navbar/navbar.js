@@ -23,6 +23,7 @@ const Navbar = () => {
         sessionStorage.removeItem("phone");
         // remove email phone
         localStorage.removeItem("doctorData");
+        sessionStorage.removeItem("doctorData");
         setIsLoggedIn(false);
         setUsername("");
        
@@ -45,7 +46,7 @@ const Navbar = () => {
 
       if (storedEmail) {
             setIsLoggedIn(true);
-            const firstName = storedName.split(' ')[0]
+            const firstName = storedEmail.split('@')[0]
             setUsername(firstName);
           }
         }, []);
